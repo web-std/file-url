@@ -1,0 +1,46 @@
+{
+  "name": "@web-std/file-url",
+  "version": "1.0.0",
+  "description": "File path to file URL builder",
+  "keywords": [
+    "file",
+    "url",
+    "file://",
+    "filesystem"
+  ],
+  "type": "module",
+  "module": "./src/lib.js",
+  "main": "./src/lib.js",
+  "types": "./dist/src/lib.d.ts",
+  "exports": {
+    ".": {
+      "import": "./src/lib.js"
+    }
+  },
+  "author": "Irakli Gozalishvili <dev@gozala.io> (https://gozala.io)",
+  "repository": "https://github.com/web-std/file-url",
+  "license": "MIT",
+  "devDependencies": {
+    "git-validate": "2.2.4",
+    "husky": "^6.0.0",
+    "lint-staged": "^11.0.0",
+    "playwright-test": "^5.0.0",
+    "prettier": "^2.3.0",
+    "rimraf": "3.0.2",
+    "typescript": "^4.3.5",
+    "uvu": "0.5.1"
+  },
+  "scripts": {
+    "check": "tsc --build",
+    "test:es": "uvu test all.spec.js",
+    "test:web": "playwright-test -r uvu test/all.spec.js",
+    "test": "npm run test:es && npm run test:web",
+    "precommit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.js": [
+      "prettier --no-semi --write",
+      "git add"
+    ]
+  }
+}
