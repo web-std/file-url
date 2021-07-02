@@ -32,6 +32,8 @@
   },
   "scripts": {
     "check": "tsc --build",
+    "build": "tsc --build",
+    "prepare": "tsc --build",
     "test:es": "uvu test all.spec.js",
     "test:web": "playwright-test -r uvu test/all.spec.js",
     "test": "npm run test:es && npm run test:web",
