@@ -7,7 +7,7 @@ import { assert } from "./test.js"
  */
 export const test = test => {
   test("invalid urls", () => {
-    const url = assert.throws(
+    assert.throws(
       // @ts-expect-error
       () => FileURL.fromPath(5),
       /must be a string/

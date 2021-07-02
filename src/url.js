@@ -80,15 +80,6 @@ const createFileURL = url => new FileURL(escapeFileURL(url))
  */
 const escapeFileURL = uri => encodeURI(uri).replace(/[?#]/g, encodeURIComponent)
 
-/**
- * Windows drive letter must be prefixed with a slash. This function ensures
- * that
- *
- * @param {string} pathname
- */
-const withSlashPrefix = pathname =>
-  pathname.charCodeAt(0) === CHAR_FORWARD_SLASH ? pathname : `/${pathname}`
-
 const CHAR_FORWARD_SLASH = "/".charCodeAt(0)
 const CHAR_BACKWARD_SLASH = "\\".charCodeAt(0)
 const CHAR_COLON = ":".charCodeAt(0)
@@ -96,39 +87,6 @@ const CHAR_UPPERCASE_A = "A".charCodeAt(0)
 const CHAR_LOWERCASE_A = "a".charCodeAt(0)
 const CHAR_LOWERCASE_Z = "z".charCodeAt(0)
 const CHAR_UPPERCASE_Z = "Z".charCodeAt(0)
-
-/**
- * Return `true` if given path is absolute posix or window path otherwise
- * returns false.
- *
- * @param {string} path
- * @returns
- */
-const isAbsolutePath = path => {
-  const { length } = path
-  if (length <= 0) {
-    return false
-  } else {
-    const code = path.charCodeAt(0)
-    switch (code) {
-      // Posix paths
-      case CHAR_FORWARD_SLASH:
-        return true
-      // Windows path
-      case CHAR_BACKWARD_SLASH:
-        return true
-      // Maybe window device root path
-      default:
-        return (
-          // long enough to containt to contain device root color and slash
-          length > 2 &&
-          isWindowsDeviceRoot(code) &&
-          path.charCodeAt(1) === CHAR_COLON &&
-          path.charCodeAt(2) === CHAR_BACKWARD_SLASH
-        )
-    }
-  }
-}
 
 /**
  * @param {number} code
