@@ -42,7 +42,11 @@ export const fromPath = path => {
         path.charCodeAt(1) === CHAR_COLON &&
         path.charCodeAt(2) === CHAR_BACKWARD_SLASH
       return isValid
-        ? createFileURL(`file:///${path.replace(/\\/g, "/")}`)
+        ? createFileURL(
+            `file:///${path.charAt(0).toUpperCase()}:${path
+              .slice(2)
+              .replace(/\\/g, "/")}`
+          )
         : invalid(`'${path}' is not a valid absolute path`)
   }
 }
