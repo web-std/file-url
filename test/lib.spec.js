@@ -62,7 +62,7 @@ export const test = test => {
 
     assert.equal(
       FileURL.fromPath("e:\\Users\\web-std\\file-url\\Readme.md").href,
-      "file:///e:/Users/web-std/file-url/Readme.md"
+      "file:///E:/Users/web-std/file-url/Readme.md"
     )
 
     assert.throws(
